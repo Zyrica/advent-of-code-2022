@@ -2,7 +2,7 @@
   "name": "advent-of-code-2022",
   "type": "module",
   "scripts": {
-    "start": "nodemon days/day-1.js"
+    "start": "nodemon days/day-2.js -e input"
   },
   "repository": {
     "type": "git",
