@@ -1,0 +1,14 @@
+{
+  "name": "advent-of-code-2022",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon days/day-1.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zyrica/advent-of-code-2022.git"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
