@@ -2,7 +2,7 @@
   "name": "advent-of-code-2022",
   "type": "module",
   "scripts": {
-    "start": "nodemon days/day-2.js -e input"
+    "start": "nodemon src --ignore src/days"
   },
   "repository": {
     "type": "git",
@@ -10,5 +10,8 @@
   },
   "dependencies": {
     "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "@types/nodemon": "^1.19.2"
   }
 }
