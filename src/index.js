@@ -10,7 +10,6 @@ const paths = {
     days: resolve('src', 'days'),
 };
 
-
 class Day {
     constructor(name) {
         this.name = name;
