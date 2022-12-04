@@ -2,7 +2,7 @@
   "name": "advent-of-code-2022",
   "type": "module",
   "scripts": {
-    "start": "nodemon src --ignore src/days"
+    "start": "nodemon src --ignore src/2022"
   },
   "repository": {
     "type": "git",
