@@ -4,25 +4,17 @@ import chalk from 'chalk';
 import { pathToFileURL } from 'url';
 
 // Init
-const delay = 200;
-const timers = {};
-
-watch(resolve('src/2022'), async (_, name) => {
-  clearTimeout(timers[name]);
-  timers[name] = setTimeout(() => runDay(name), delay);
-});
-
-console.clear();
+watch(resolve('src/2022'), (_, name) => runDay(name));
 console.log('Watching all days for changes.');
 
 // Functions
 async function runDay(name) {
   try {
-    console.clear();
+    console.log();
     console.log(chalk.cyan(name));
 
     const path = resolve('src/2022/', name) + '/';
-    const {task1, task2} = await import(pathToFileURL(path + 'index.js'));
+    const {task1, task2} = await import(pathToFileURL(path + 'index.js') + '?update=' + Date.now());
     const tasks = [task1, task2];
     const input = read(path + 'input');
     const solution = read(path + 'solution');
