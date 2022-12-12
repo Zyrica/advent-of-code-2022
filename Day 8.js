@@ -1,4 +1,126 @@
-110120112111001131321041300301301303441234124551121322251330313143000402010402222102132100122022010
+const parse = input => {
+  input = input.split('\n');
+  let cols = input.length;
+  let rows = input[0].length;
+  let heights = input.map(row => row.split(''));
+
+  return {cols, rows, heights};
+};
+
+function task1(input) {
+  const {cols, rows, heights} = parse(input);
+  const visible = [];
+
+  // default false
+  for (let x = 0; x < cols; x++) {
+    visible[x] = [];
+    for (let y = 0; y < rows; y++) {
+      visible[x][y] = false;
+    }
+  }
+  // from left
+  for (let y = 0; y < rows; y++) {
+    let height = -1;
+    for (let x = 0; x < cols; x++) {
+      if (heights[x][y] > height) {
+        visible[x][y] = true;
+        height = heights[x][y];
+      }
+    }
+  }
+
+  // from right
+  for (let y = 0; y < rows; y++) {
+    let height = -1;
+    for (let x = cols - 1; x >= 0; x--) {
+      if (heights[x][y] > height) {
+        visible[x][y] = true;
+        height = heights[x][y];
+      }
+    }
+  }
+
+  // from top
+  for (let x = 0; x < cols; x++) {
+    let height = -1;
+    for (let y = 0; y < rows; y++) {
+      if (heights[x][y] > height) {
+        visible[x][y] = true;
+        height = heights[x][y];
+      }
+    }
+  }
+
+  // from bottom
+  for (let x = 0; x < cols; x++) {
+    let height = -1;
+    for (let y = rows - 1; y >= 0; y--) {
+      if (heights[x][y] > height) {
+        visible[x][y] = true;
+        height = heights[x][y];
+      }
+    }
+  }
+
+  let count = 0;
+
+  for (let x = 0; x < cols; x++) {
+    for (let y = 0; y < rows; y++) {
+      if (visible[x][y]) count++;
+    }
+  }
+
+
+  return count;
+}
+
+function task2(input) {
+  const {cols, rows, heights} = parse(input);
+  let highScore = 0;
+
+  for (let x = 0; x < cols; x++) {
+    for (let y = 0; y < rows; y++) {
+      const height = heights[x][y];
+
+      // right
+      let r = 0;
+      while (true) {
+        if (!heights[x + r + 1]) break;
+        const h = heights[x + ++r][y];
+        if (h >= height) break;
+      }
+
+      // left
+      let l = 0;
+      while (true) {
+        if (!heights[x - l - 1]) break;
+        const h = heights[x - ++l][y];
+        if (h >= height) break;
+      }
+
+      // top
+      let t = 0;
+      while (true) {
+        if (!heights[x][y - t - 1]) break;
+        const h = heights[x][y - ++t];
+        if (h >= height) break;
+      }
+
+      // bottom
+      let b = 0;
+      while (true) {
+        if (!heights[x][y + b + 1]) break;
+        const h = heights[x][y + ++b];
+        if (h >= height) break;
+      }
+      const score = r * l * t * b;
+      if (score > highScore) highScore = score;
+    }
+  }
+  return highScore;
+}
+
+const input = `110120112111001131321041300301301303441234124551121322251330313143000402010402222102132100122022010
 102022211221313002214040003422200133214443443344513144525425414312301403121303234303302002320112112
 210010213122220022044234043143210343153522554535142243154212251531131301322100210101210220021120002
 102121023302220201244401343001244152321314335555225552452235435142424222400201243131033233132300012
@@ -96,4 +218,7 @@
 011113131212122444114002223055334423355534243143431114514423114231245444321300320012331211022033212
 002212000000110302100021230014455443312425144435152143143442414153352133343121411041331012202310102
 210201101233022220342334431121141315524541455453142142455421413551235442221014014113231131231321000
-220111011200000221024334041434043215212524255254251231145211234333012044102233302403303110130010001
+220111011200000221024334041434043215212524255254251231145211234333012044102233302403303110130010001`;
+
+console.log(task1(input.slice('\n')));
+console.log(task2(input.slice('\n')));
