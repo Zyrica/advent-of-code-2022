@@ -5,12 +5,7 @@
     "type": "git",
     "url": "git+https://github.com/Zyrica/advent-of-code-2022.git"
   },
-  "dependencies": {
-    "big-number": "^2.0.0",
-    "chalk": "^5.1.2",
+  "dev-dependencies": {
     "nodemon": "^2.0.20"
-  },
-  "devDependencies": {
-    "@types/nodemon": "^1.19.2"
   }
 }
